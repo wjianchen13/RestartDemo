@@ -5,7 +5,6 @@
 在启动app的时候，偶然间发现部分手机上每次应用点击home退到后台，再点击launcher上的图标重新进入，每次都会重新启动欢迎界面，然后再进入主界面。
 ## 基本流程
 1.启动：WelcomeActivity->MainActivity->OtherActivity
-
 2.home按下：应用退到后台
 
 3.点击launcher图标启动应用：WelcomeActivity->MainActivity
