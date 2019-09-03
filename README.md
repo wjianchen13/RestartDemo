@@ -3,16 +3,16 @@
 
 在启动app的时候，偶然间发现部分手机上每次应用点击home退到后台，再点击launcher上的图标重新进入，每次都会重新启动欢迎界面，然后再进入主界面。
 ## 基本流程
-1.启动：WelcomeActivity->MainActivity->OtherActivity<br>
-2.home按下：应用退到后台<br>
-3.点击launcher图标启动应用：WelcomeActivity->MainActivity<br>
+1. 启动：WelcomeActivity->MainActivity->OtherActivity<br>
+2. home按下：应用退到后台<br>
+3. 点击launcher图标启动应用：WelcomeActivity->MainActivity<br>
 并没有按照预想那样，直接返回之前已经打开的页面。<br>
 ![image1](./docs/images/image1.gif)
 
-最后发现apk在通过部分手机系统安装器安装并打开之后，WelcomeActivity的Intent的flags是有差异的。
-所以导致上面应用重复启动原因是，安装器启动的应用，退到后台再返回前台，WelcomeActivity会多出一个FLAG_ACTIVITY_BROUGHT_TO_FRONT的flag。
+最后发现apk在通过部分手机系统安装器安装并打开之后，WelcomeActivity的Intent的flags是有差异的。<br>
+所以导致上面应用重复启动原因是，安装器启动的应用，退到后台再返回前台，WelcomeActivity会多出一个FLAG_ACTIVITY_BROUGHT_TO_FRONT的flag。<br>
 实际上已经是重新启动了WelcomeActivity，再由WelcomeActivity启动MainActivity，这个时候如果多次点击home再返回应用，是存在多个MainActivity的实例的
-点击多次返回键就能看出问题。
+点击多次返回键就能看出问题。<br>
 ![image1](./docs/images/image2.gif)
 
 ## 解决办法
