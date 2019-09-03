@@ -3,9 +3,9 @@
 
 在启动app的时候，偶然间发现部分手机上每次应用点击home退到后台，再点击launcher上的图标重新进入，每次都会重新启动欢迎界面，然后再进入主界面。
 ## 基本流程
-1. 启动：WelcomeActivity->MainActivity->OtherActivity<br>
-2. home按下：应用退到后台<br>
-3. 点击launcher图标启动应用：WelcomeActivity->MainActivity<br>
+1.启动：WelcomeActivity->MainActivity->OtherActivity<br>
+2.home按下：应用退到后台<br>
+3.点击launcher图标启动应用：WelcomeActivity->MainActivity<br>
 并没有按照预想那样，直接返回之前已经打开的页面。<br>
 ![image1](./docs/images/image1.gif)
 
@@ -19,6 +19,23 @@
 所有做的处理就是启动WelcomeActivity时，判断这个WelcomeActivity是不是最初的，如果不是直接结束掉当前的WelcomeActivity，不要再让它走正常流程启动MainActivity。
 使用Activity提供的isTaskRoot()方法，改方法会判断当前的Activity是根Activity，如果不是，就返回false。而当我们从后台返回前台时，由于之前已经存在了别的Activity，
 这时应该返回false，如果满足情况，直接结束该Activity。
+
+```Java
+public class WelcomeActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
+        if(!isTaskRoot()) {
+            finish();
+            return;
+        }
+
+        ...
+
+    }
+```
 
 ## license
 
