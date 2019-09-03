@@ -3,10 +3,10 @@
 
 在启动app的时候，偶然间发现部分手机上每次应用点击home退到后台，再点击launcher上的图标重新进入，每次都会重新启动欢迎界面，然后再进入主界面。
 ## 基本流程
-  1.启动：WelcomeActivity->MainActivity->OtherActivity
-  2.home按下：应用退到后台
-  3.点击launcher图标启动应用：WelcomeActivity->MainActivity
-并没有按照预想那样，直接返回之前已经打开的页面。
+1.启动：WelcomeActivity->MainActivity->OtherActivity<br>
+2.home按下：应用退到后台<br>
+3.点击launcher图标启动应用：WelcomeActivity->MainActivity<br>
+并没有按照预想那样，直接返回之前已经打开的页面。<br>
 ![image1](./docs/images/image1.gif)
 
 最后发现apk在通过部分手机系统安装器安装并打开之后，WelcomeActivity的Intent的flags是有差异的。
