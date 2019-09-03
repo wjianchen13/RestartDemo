@@ -1,10 +1,11 @@
 # Android Home键之后点击桌面icon重复启动应用问题
 ![API](https://img.shields.io/badge/API-15%2B-green) ![license](https://img.shields.io/badge/License-Apache%202.0-blue)
+
 在启动app的时候，偶然间发现部分手机上每次应用点击home退到后台，再点击launcher上的图标重新进入，每次都会重新启动欢迎界面，然后再进入主界面。
 ## 基本流程
-  1.启动：WelcomeActivity->MainActivity->OtherActivity
-  2.home按下：应用退到后台
-  3.点击launcher图标启动应用：WelcomeActivity->MainActivity
+1.启动：WelcomeActivity->MainActivity->OtherActivity
+2.home按下：应用退到后台
+3.点击launcher图标启动应用：WelcomeActivity->MainActivity
 并没有按照预想那样，直接返回之前已经打开的页面。
 ![image1](./docs/images/image1.gif)
 
