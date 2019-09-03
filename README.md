@@ -6,14 +6,18 @@
 1.启动：WelcomeActivity->MainActivity->OtherActivity<br>
 2.home按下：应用退到后台<br>
 3.点击launcher图标启动应用：WelcomeActivity->MainActivity<br>
+
 并没有按照预想那样，直接返回之前已经打开的页面。<br>
+
 ![image1](./docs/images/image1.gif)
 
 最后发现apk在通过部分手机系统安装器安装并打开之后，WelcomeActivity的Intent的flags是有差异的。<br>
 所以导致上面应用重复启动原因是，安装器启动的应用，退到后台再返回前台，WelcomeActivity会多出一个FLAG_ACTIVITY_BROUGHT_TO_FRONT的flag。<br>
 实际上已经是重新启动了WelcomeActivity，再由WelcomeActivity启动MainActivity，这个时候如果多次点击home再返回应用，是存在多个MainActivity的实例的
 点击多次返回键就能看出问题。<br>
+
 ![image1](./docs/images/image2.gif)
+
 
 ## 解决办法
 所有做的处理就是启动WelcomeActivity时，判断这个WelcomeActivity是不是最初的，如果不是直接结束掉当前的WelcomeActivity，不要再让它走正常流程启动MainActivity。
